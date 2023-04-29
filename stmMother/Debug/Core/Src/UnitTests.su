@@ -1,0 +1,4 @@
+../Core/Src/UnitTests.c:11:6:SDcardTest	8304	static
+../Core/Src/UnitTests.c:129:6:rfTest	40	static
+../Core/Src/UnitTests.c:140:6:flashTest	88	static
+../Core/Src/UnitTests.c:155:6:batteryTest	56	static

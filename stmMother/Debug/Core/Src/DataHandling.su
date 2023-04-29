@@ -1,0 +1,2 @@
+../Core/Src/DataHandling.c:11:6:encodeMeasurementData	256	static
+../Core/Src/DataHandling.c:43:6:decodeMeasurementData	64	static

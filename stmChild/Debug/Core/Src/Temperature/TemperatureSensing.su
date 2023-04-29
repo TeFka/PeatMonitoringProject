@@ -1,0 +1,5 @@
+../Core/Src/Temperature/TemperatureSensing.c:10:6:sendSPI	24	static
+../Core/Src/Temperature/TemperatureSensing.c:39:5:getSPI	32	static
+../Core/Src/Temperature/TemperatureSensing.c:72:6:configureSensor	24	static
+../Core/Src/Temperature/TemperatureSensing.c:78:5:temp_getID	16	static
+../Core/Src/Temperature/TemperatureSensing.c:84:8:getTemperatureVal	24	static

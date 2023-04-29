@@ -1,0 +1,6 @@
+../Core/Src/LCD/LCDMeniu.c:11:6:LCDmeniuInit	16	static
+../Core/Src/LCD/LCDMeniu.c:17:6:handleControl	16	static
+../Core/Src/LCD/LCDMeniu.c:49:6:updatePageData	32	static
+../Core/Src/LCD/LCDMeniu.c:63:6:nextScreen	16	static
+../Core/Src/LCD/LCDMeniu.c:71:6:previousScreen	16	static
+../Core/Src/LCD/LCDMeniu.c:79:6:showMeniu	40	static

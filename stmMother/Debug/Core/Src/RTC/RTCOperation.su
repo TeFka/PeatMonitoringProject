@@ -1,0 +1,3 @@
+../Core/Src/RTC/RTCOperation.c:10:6:setAlarm	16	static
+../Core/Src/RTC/RTCOperation.c:16:6:handleAlarm	16	static
+../Core/Src/RTC/RTCOperation.c:22:6:alarmInterupt	16	static

@@ -1,0 +1,13 @@
+../Core/Src/ManagementChild.c:15:6:performDepthMeasurement	192	static
+../Core/Src/ManagementChild.c:69:6:performPressureMeasurement	64	static
+../Core/Src/ManagementChild.c:116:6:performTemperatureMeasurement	32	static
+../Core/Src/ManagementChild.c:137:6:checkBattery	56	static
+../Core/Src/ManagementChild.c:185:6:setRfListening	144	static
+../Core/Src/ManagementChild.c:263:6:powerDownDevices	8	static
+../Core/Src/ManagementChild.c:273:6:synchronizationSetup	96	static
+../Core/Src/ManagementChild.c:339:6:memorySetup	104	static
+../Core/Src/ManagementChild.c:360:5:mainSetup	24	static
+../Core/Src/ManagementChild.c:386:5:IDhandling	88	static
+../Core/Src/ManagementChild.c:431:6:setShutdownMode	8	static
+../Core/Src/ManagementChild.c:443:6:addDeviceData	8536	static
+../Core/Src/ManagementChild.c:507:6:mainOperation	64	static
