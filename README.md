@@ -1,6 +1,7 @@
 # PeatMonitoringGroup10
 This is the repository for used for storage of all relevant software code produced during the project of developing a peat monitoring device<br>
-University: University of Nottingham<br><br>
+<br>University of Nottingham<br>
+Department of Electronic and Electrical Engineering<br>
 Module: Group Project<br>
 Module Code: EEEE4019<br>
 Group number: 10<br>
