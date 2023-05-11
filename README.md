@@ -1,2 +1,14 @@
 # PeatMonitoringGroup10
-This is the repository for used for storage of all software code and other components produced during the project of developing the peat monitoring device or University of Nottingham EEEE4019 Group Project.
+This is the repository for used for storage of all relevant software code produced during the project of developing a peat monitoring device
+University: University of Nottingham
+Module: Group Project
+Module Code: EEEE4019
+Group number: 10
+Group members:
+Oliver Davies
+Chuan Loo
+Danielius Zurlys
+Sever Dragomir
+James Bodenham
+
+
