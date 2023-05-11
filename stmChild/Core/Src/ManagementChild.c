@@ -57,7 +57,7 @@ void performDepthMeasurement(ADC_HandleTypeDef*  handle1, ADC_HandleTypeDef*  ha
 	HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_RESET); // depth
 
 	//Retrieve actual depth value
-	data->depthValue = 100*(((float)depthData.pos)/35);
+	data->depthValue = 100*(((float)depthData.pos)/50);
 
 	printf("\r\nCalculated distance: %d", data->depthValue);
 
