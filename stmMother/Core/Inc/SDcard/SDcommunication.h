@@ -21,8 +21,8 @@ struct SDinfo{
 
 };
 
-#define SD_CS_PORT      GPIOB
-#define SD_CS_PIN     	GPIO_PIN_12
+#define SD_CS_PORT      GPIOA
+#define SD_CS_PIN     	GPIO_PIN_10
 
 void process_SD_card(struct SDinfo* config);
 

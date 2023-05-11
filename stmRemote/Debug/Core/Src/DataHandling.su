@@ -1,2 +1,4 @@
-../Core/Src/DataHandling.c:11:6:encodeMeasurementData	256	static
-../Core/Src/DataHandling.c:43:6:decodeMeasurementData	64	static
+../Core/Src/DataHandling.c:12:6:encodeMeasurementData	256	static
+../Core/Src/DataHandling.c:52:6:decodeMeasurementData	64	static
+../Core/Src/DataHandling.c:85:6:deviceDataCompression	56	static
+../Core/Src/DataHandling.c:101:6:deviceDataDecompression	32	static

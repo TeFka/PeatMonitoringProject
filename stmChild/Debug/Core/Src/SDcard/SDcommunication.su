@@ -1,5 +1,0 @@
-../Core/Src/SDcard/SDcommunication.c:10:6:process_SD_card	136	static
-../Core/Src/SDcard/SDcommunication.c:72:6:sendSD	32	static
-../Core/Src/SDcard/SDcommunication.c:101:5:setupCard	24	static
-../Core/Src/SDcard/SDcommunication.c:110:5:stopCard	24	static
-../Core/Src/SDcard/SDcommunication.c:118:6:getSD	32	static

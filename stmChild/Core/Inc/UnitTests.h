@@ -12,7 +12,6 @@
 #include "Temperature/TemperatureSensing.h"
 #include "RF/comms.h"
 #include "Depth/DepthMeasuring.h"
-#include "SDcard/SDcommunication.h"
 #include "FlashMemoryAccess.h"
 
 #define Vref 3.3

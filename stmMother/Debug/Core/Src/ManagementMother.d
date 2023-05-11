@@ -37,8 +37,8 @@ Core/Src/ManagementMother.o: ../Core/Src/ManagementMother.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Core/Inc/DataHandling.h ../Core/Inc/RF/comms.h ../Core/Inc/main.h \
- ../Core/Inc/SDcard/SDcommunication.h ../FATFS/App/fatfs.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../Core/Inc/DataHandling.h ../Core/Inc/SDcard/SDcommunication.h \
+ ../FATFS/App/fatfs.h ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
@@ -85,6 +85,7 @@ Core/Src/ManagementMother.o: ../Core/Src/ManagementMother.c \
 ../Core/Inc/DataHandling.h:
 ../Core/Inc/RF/comms.h:
 ../Core/Inc/main.h:
+../Core/Inc/DataHandling.h:
 ../Core/Inc/SDcard/SDcommunication.h:
 ../FATFS/App/fatfs.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:

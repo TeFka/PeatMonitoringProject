@@ -35,7 +35,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h \
- ../Core/Inc/retarget.h ../Core/Inc/RF/comms.h \
+ ../Core/Inc/retarget.h ../Core/Inc/RF/comms.h ../Core/Inc/DataHandling.h \
  ../Core/Inc/ManagementRemote.h ../Core/Inc/DataHandling.h \
  ../Core/Inc/RF/comms.h ../Core/Inc/SDcard/SDcommunication.h \
  ../Core/Inc/FlashMemoryAccess.h ../Core/Inc/retarget.h
@@ -81,6 +81,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../FATFS/Target/user_diskio.h:
 ../Core/Inc/retarget.h:
 ../Core/Inc/RF/comms.h:
+../Core/Inc/DataHandling.h:
 ../Core/Inc/ManagementRemote.h:
 ../Core/Inc/DataHandling.h:
 ../Core/Inc/RF/comms.h:

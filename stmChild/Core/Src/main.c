@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "fatfs.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -26,7 +25,6 @@
 #include <ManagementChild.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "SDcard/SDcommunication.h"
 #include "UnitTests.h"
 #include <RF/comms.h>
 
@@ -129,7 +127,6 @@ int main(void)
   MX_RNG_Init();
   MX_LPUART1_UART_Init();
   MX_SPI2_Init();
-  MX_FATFS_Init();
   MX_USART3_UART_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
@@ -169,22 +166,22 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  //HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_SET);
-	  //HAL_Delay(100);
-	  //SDcardTest();
-	  //HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_RESET);
-
-	  //flashTest();
-
 	  /*HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_SET);
 	  HAL_Delay(100);
-	  TemperatureTest(&hspi2);
-	  HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_RESET);*/
+	  SDcardTest();
+	  HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_RESET);
 
-	  //HAL_GPIO_WritePin(uartGPIO, uartGPIOPin, GPIO_PIN_SET);
-	  //HAL_Delay(100);
-	  //rfTest(&hlpuart1);
-	  //HAL_GPIO_WritePin(uartGPIO, uartGPIOPin, GPIO_PIN_RESET);
+	  flashTest();
+
+	  HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_SET);
+	  HAL_Delay(100);
+	  TemperatureTest(&hspi2);
+	  HAL_GPIO_WritePin(spiGPIO, spiGPIOPin, GPIO_PIN_RESET);
+
+	  HAL_GPIO_WritePin(uartGPIO, uartGPIOPin, GPIO_PIN_SET);
+	  HAL_Delay(100);
+	  rfTest(&hlpuart1);
+	  HAL_GPIO_WritePin(uartGPIO, uartGPIOPin, GPIO_PIN_RESET);
 
 	  HAL_GPIO_WritePin(i2cGPIO, i2cGPIOPin, GPIO_PIN_SET);
 	  HAL_Delay(100);
@@ -192,16 +189,16 @@ int main(void)
 	  pressureTest(&hi2c1, LPS28DFW_I2C_ADDRESS_SECONDARY);
 	  HAL_GPIO_WritePin(i2cGPIO, i2cGPIOPin, GPIO_PIN_RESET);
 	  //mainOperation(&rfData, &handles);
-	  /*HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_SET);
 	  HAL_Delay(100);
 	  depthTest(&hadc1, &hadc2, &depthData);
-	  HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_RESET);*/
+	  HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_RESET);*
 
-	  //HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_SET);
-	  //HAL_Delay(100);
-	  //batteryTest(&hadc1);
-	  //HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_RESET);
-
+	  HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_SET);
+	  HAL_Delay(100);
+	  batteryTest(&hadc1);
+	  HAL_GPIO_WritePin(adcGPIO, adcGPIOPin, GPIO_PIN_RESET);
+*/
 	  printf("\r\nLoop");
 
 	  HAL_Delay(100);
@@ -751,8 +748,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			printf("\r\nreceived uart message: %x", UART2_rxBuffer[i]);
 			enqueue(&RXFIFO, UART2_rxBuffer[i]);
 	}
+	//Setup new receive interrupt
 	HAL_UART_Receive_IT(&hlpuart1, UART2_rxBuffer, MSG_SIZE_TRANSFER);
+
+	//Abort new interrupt to clear the buffer
 	HAL_UART_Abort_IT(&hlpuart1);
+
+	//Setup new clean receive interrupt
 	HAL_UART_Receive_IT(&hlpuart1, UART2_rxBuffer, MSG_SIZE_TRANSFER);
 }
 /* USER CODE END 4 */

@@ -95,9 +95,12 @@ void requestMeasureData(struct deviceData* device, int* deviceNum, struct rfData
 	rfData->activeTxMessageSize = 0;
 	rfData->activeTxMessage[MSG_PREAMBLE_POS] = MSG_PREAMBLE;
 	rfData->activeTxMessage[MSG_TYPE_POS] = MSG_TYPE_GIVE_MEASUREMENT_DATA;
-	rfData->activeTxMessage[MSG_TO_ID_POS] = 0;
-	rfData->activeTxMessage[MSG_FROM_ID_POS] = rfData->myDevice.device_id;
+	rfData->activeTxMessage[MSG_TO_ID_POS1] = 0;
+	rfData->activeTxMessage[MSG_TO_ID_POS2] = 0;
+	rfData->activeTxMessage[MSG_FROM_ID_POS1] = rfData->myDevice.device_id&0x0F;
+	rfData->activeTxMessage[MSG_FROM_ID_POS2] = rfData->myDevice.device_id&0xF0;
 	rfData->activeTxMessage[MSG_NUM_HOPS_POS] = 0;
+	rfData->activeTxMessage[MSG_MAX_HOPS_POS] = 0;
 	rfData->activeTxMessage[MSG_SIZE_POS] = rfData->activeTxMessageSize;
 
 	Send(rfData->activeTxMessage, rfData->activeTxMessageSize+6);
@@ -114,7 +117,7 @@ void requestMeasureData(struct deviceData* device, int* deviceNum, struct rfData
 				requestSuccessful = true;
 
 			}
-			else if(rfData->activeRxMessage[i][MSG_TO_ID_POS] == rfData->myDevice.device_id){
+			else if(rfData->toID[i] == rfData->myDevice.device_id){
 
 				printf("decoding data");
 				uint8_t allData[rfData->activeRxMessage[i][MSG_SIZE_POS]];
@@ -145,9 +148,12 @@ int requestStatusData(struct statusData* statusInfo, struct rfDataStorage* rfDat
 	rfData->activeTxMessageSize = 0;
 	rfData->activeTxMessage[MSG_PREAMBLE_POS] = MSG_PREAMBLE;
 	rfData->activeTxMessage[MSG_TYPE_POS] = MSG_TYPE_GIVE_STATUS_DATA;
-	rfData->activeTxMessage[MSG_TO_ID_POS] = 70;
-	rfData->activeTxMessage[MSG_FROM_ID_POS] = rfData->myDevice.device_id;
+	rfData->activeTxMessage[MSG_TO_ID_POS1] = 70&0x0F;
+	rfData->activeTxMessage[MSG_TO_ID_POS2] = 70&0xF0;
+	rfData->activeTxMessage[MSG_FROM_ID_POS1] = rfData->myDevice.device_id&0x0F;
+	rfData->activeTxMessage[MSG_FROM_ID_POS2] = rfData->myDevice.device_id&0xF0;
 	rfData->activeTxMessage[MSG_NUM_HOPS_POS] = 0;
+	rfData->activeTxMessage[MSG_MAX_HOPS_POS] = 0;
 	rfData->activeTxMessage[MSG_SIZE_POS] = rfData->activeTxMessageSize;
 
 	int requestSuccessful = false;
@@ -156,7 +162,7 @@ int requestStatusData(struct statusData* statusInfo, struct rfDataStorage* rfDat
 	HAL_Delay(100);
 
 	Send(rfData->activeTxMessage, rfData->activeTxMessageSize+6);
-	int listeningCounter = 200;
+	int listeningCounter = 100;
 	while(!requestSuccessful){
 		printf("\r\nScanning");
 		Comms_Handler(rfData);
@@ -165,15 +171,15 @@ int requestStatusData(struct statusData* statusInfo, struct rfDataStorage* rfDat
 			//printf("last id: %d -> comparing to: %d", rfData->activeRxMessage[MSG_TO_ID_POS], rfData->myDevice.device_id);
 			printf("last message type: %d", rfData->activeRxMessage[i][MSG_TYPE_POS]);
 			if(rfData->activeRxMessage[i][MSG_TYPE_POS] == MSG_TYPE_REMOTE_DONE){
-				printf("\r\ngot data request reply from: %d", rfData->activeRxMessage[i][MSG_FROM_ID_POS]);
+				printf("\r\ngot data request reply from: %d", rfData->fromID[i]);
 				requestSuccessful = true;
 
 			}
 			if(rfData->activeRxMessage[i][MSG_TYPE_POS] == MSG_TYPE_GIVE_BROKEN_DATA){
 				printf("\r\nbroken data received: %d->", rfData->activeRxMessage[i][MSG_SIZE_POS], statusInfo->brokenNum);
-				for(int n = 0;n<rfData->activeRxMessage[i][MSG_SIZE_POS];n++){
+				for(int n = 0;n<rfData->activeRxMessage[i][MSG_SIZE_POS];n+=2){
 
-					statusInfo->brokenDevices[statusInfo->brokenNum] = rfData->activeRxMessage[i][MSG_BODY_START+n];
+					statusInfo->brokenDevices[statusInfo->brokenNum] = ((uint16_t)rfData->activeRxMessage[i][MSG_BODY_START+n+1]<<8)|(uint16_t)rfData->activeRxMessage[i][MSG_BODY_START+n];
 					statusInfo->brokenNum++;
 				}
 				printf("\r\nbroken data received: %d->", rfData->activeRxMessage[i][MSG_SIZE_POS], statusInfo->brokenNum);
@@ -181,9 +187,9 @@ int requestStatusData(struct statusData* statusInfo, struct rfDataStorage* rfDat
 			}
 			else if(rfData->activeRxMessage[i][MSG_TYPE_POS] == MSG_TYPE_GIVE_LOW_BATTERY_DATA){
 				printf("\r\nbattery data received: %d->", rfData->activeRxMessage[i][MSG_SIZE_POS], statusInfo->lowBatteryNum);
-				for(int n = 0;n<rfData->activeRxMessage[i][MSG_SIZE_POS];n++){
+				for(int n = 0;n<rfData->activeRxMessage[i][MSG_SIZE_POS];n+=2){
 
-					statusInfo->lowBatteryDevices[statusInfo->lowBatteryNum] = rfData->activeRxMessage[i][MSG_BODY_START+n];
+					statusInfo->lowBatteryDevices[statusInfo->lowBatteryNum] = ((uint16_t)rfData->activeRxMessage[i][MSG_BODY_START+n+1]<<8)|(uint16_t)rfData->activeRxMessage[i][MSG_BODY_START+n];
 					statusInfo->lowBatteryNum++;
 				}
 				printf("\r\nbattery data received: %d->", rfData->activeRxMessage[i][MSG_SIZE_POS], statusInfo->lowBatteryNum);

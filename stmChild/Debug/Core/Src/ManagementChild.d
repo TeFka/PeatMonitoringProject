@@ -38,15 +38,9 @@ Core/Src/ManagementChild.o: ../Core/Src/ManagementChild.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Core/Inc/DataHandling.h ../Core/Inc/Pressure/PressureSensing.h \
  ../Core/Inc/retarget.h ../Core/Inc/Temperature/TemperatureSensing.h \
- ../Core/Inc/RF/comms.h ../Core/Inc/main.h \
+ ../Core/Inc/RF/comms.h ../Core/Inc/main.h ../Core/Inc/DataHandling.h \
  ../Core/Inc/Depth/DepthMeasuring.h ../Core/Inc/FlashMemoryAccess.h \
- ../Core/Inc/retarget.h ../Core/Inc/SDcard/SDcommunication.h \
- ../FATFS/App/fatfs.h ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
- ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
- ../Middlewares/Third_Party/FatFs/src/diskio.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h \
- ../Core/Src/../Inc/FlashMemoryAccess.h
+ ../Core/Inc/retarget.h ../Core/Src/../Inc/FlashMemoryAccess.h
 ../Core/Inc/ManagementChild.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -90,16 +84,8 @@ Core/Src/ManagementChild.o: ../Core/Src/ManagementChild.c \
 ../Core/Inc/Temperature/TemperatureSensing.h:
 ../Core/Inc/RF/comms.h:
 ../Core/Inc/main.h:
+../Core/Inc/DataHandling.h:
 ../Core/Inc/Depth/DepthMeasuring.h:
 ../Core/Inc/FlashMemoryAccess.h:
 ../Core/Inc/retarget.h:
-../Core/Inc/SDcard/SDcommunication.h:
-../FATFS/App/fatfs.h:
-../Middlewares/Third_Party/FatFs/src/ff.h:
-../Middlewares/Third_Party/FatFs/src/integer.h:
-../FATFS/Target/ffconf.h:
-../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
-../Middlewares/Third_Party/FatFs/src/diskio.h:
-../Middlewares/Third_Party/FatFs/src/ff.h:
-../FATFS/Target/user_diskio.h:
 ../Core/Src/../Inc/FlashMemoryAccess.h:

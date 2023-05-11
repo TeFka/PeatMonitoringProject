@@ -26,9 +26,7 @@
 #include <ManagementMother.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <FlashMemoryAccess.h>
-
 #include "UnitTests.h"
 
 //#include <LCD/LiquidCrystal.h>
@@ -81,7 +79,7 @@ static void MX_ADC1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 struct Queue RXFIFO;
-uint8_t UART2_rxBuffer[100];
+uint8_t UART2_rxBuffer[20];
 
 /* USER CODE END 0 */
 
@@ -133,8 +131,8 @@ rfData.RXFIFO = &RXFIFO;
 
 HAL_UART_Receive_IT(&hlpuart1, UART2_rxBuffer, MSG_SIZE_TRANSFER);
 
-if(mainSetupMother(&rfData, &handles)){
-   mainOperationMother(&rfData, &handles);
+if(mainSetup(&rfData, &handles)){
+   mainOperation(&rfData, &handles);
 }
 
 HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, GPIO_PIN_SET);
@@ -150,12 +148,12 @@ HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+/*
 	  HAL_GPIO_WritePin(SDcardGPIO, SDcardGPIOPin, GPIO_PIN_SET);
 	  HAL_Delay(100);
 	  SDcardTest();
 	  HAL_GPIO_WritePin(SDcardGPIO, SDcardGPIOPin, GPIO_PIN_RESET);
-
+*/
 	  printf("Loop");
 	  HAL_Delay(1000);
   }
@@ -186,8 +184,11 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSE|RCC_OSCILLATORTYPE_MSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSE
+                              |RCC_OSCILLATORTYPE_MSI;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
   RCC_OscInitStruct.MSICalibrationValue = 0;
   RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
@@ -201,7 +202,7 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
@@ -456,24 +457,6 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 0;
-  sTime.Minutes = 0;
-  sTime.Seconds = 0;
-  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sDate.WeekDay = RTC_WEEKDAY_MONDAY;
-  sDate.Month = RTC_MONTH_JANUARY;
-  sDate.Date = 1;
-  sDate.Year = 0;
-
-  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
-  {
-    Error_Handler();
-  }
 
   /** Enable the Alarm A
   */
@@ -578,6 +561,9 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
+
   /*Configure GPIO pins : PB2 PB10 */
   GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_10;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -600,6 +586,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PA10 */
+  GPIO_InitStruct.Pin = GPIO_PIN_10;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
@@ -608,12 +601,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	//printf("\r\nreceived uart message");
 	for (int i = 0; i < MSG_SIZE_TRANSFER; i++)
 	{
-			//printf("\r\nreceived uart message: %x", UART2_rxBuffer[i]);
+			printf("\r\nreceived uart message: %x", UART2_rxBuffer[i]);
 			enqueue(&RXFIFO, UART2_rxBuffer[i]);
-			UART2_rxBuffer[i] = 0;
 	}
+	//Setup new receive interrupt
 	HAL_UART_Receive_IT(&hlpuart1, UART2_rxBuffer, MSG_SIZE_TRANSFER);
+
+	//Abort new interrupt to clear the buffer
 	HAL_UART_Abort_IT(&hlpuart1);
+
+	//Setup new clean receive interrupt
 	HAL_UART_Receive_IT(&hlpuart1, UART2_rxBuffer, MSG_SIZE_TRANSFER);
 }
 /* USER CODE END 4 */

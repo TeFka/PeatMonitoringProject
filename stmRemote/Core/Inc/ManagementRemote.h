@@ -53,8 +53,8 @@ struct deviceData{
 
 struct statusData{
 
-	uint8_t brokenDevices[100];
-	uint8_t lowBatteryDevices[100];
+	uint16_t brokenDevices[100];
+	uint16_t lowBatteryDevices[100];
 	uint8_t brokenNum;
 	uint8_t lowBatteryNum;
 

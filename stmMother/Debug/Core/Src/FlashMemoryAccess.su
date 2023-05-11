@@ -1,2 +1,3 @@
-../Core/Src/FlashMemoryAccess.c:10:10:Flash_Write_Data	40	static
-../Core/Src/FlashMemoryAccess.c:62:6:Flash_Read_Data	24	static
+../Core/Src/FlashMemoryAccess.c:11:10:Flash_Erase_Data	24	static
+../Core/Src/FlashMemoryAccess.c:50:10:Flash_Write_Data	40	static
+../Core/Src/FlashMemoryAccess.c:108:6:Flash_Read_Data	24	static

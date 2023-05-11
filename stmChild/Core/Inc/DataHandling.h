@@ -19,7 +19,7 @@
 #define undergroundTemperatureSignBitSize 	1
 #define undergroundTemperatureBitSize 		12
 #define batteryStatusBitSize 				1
-#define overallDataBitSize					56
+#define overallDataBitSize					57
 
 //measurement data shifts
 #define depthValueSignShift 				0
@@ -41,7 +41,9 @@
 #define undergroundTemperatureMask 			0x0FFF
 #define batteryStatusMask					0x01
 
+#define bit8Comb(val1, val2)  ((uint16_t)val2<<8)|((uint16_t)val1)
 
+//Structure to keep measurement data
 struct measurementData{
 
 	int depthValue;
@@ -52,7 +54,16 @@ struct measurementData{
 
 };
 
+//Function to encode measurement data into bytes
 void encodeMeasurementData(struct measurementData* data, uint8_t dataArray[], uint8_t* dataSize);
+
+//Function to decode measurement data from bytes
 void decodeMeasurementData(struct measurementData* data, uint8_t dataArray[], uint8_t dataSize);
+
+//Function to compress data from separate arrays into long word array
+void deviceDataCompression(uint64_t largeWords[], uint16_t numberOfValues, uint16_t deviceIds[], uint8_t deviceHops[]);
+
+//Function to decompress data from long word array in to separate arrays
+void deviceDataDecompression(uint64_t largeWords[], uint16_t numberOfValues, uint16_t deviceIds[], uint8_t deviceHops[]);
 
 #endif /* INC_DATACHANGE_H_ */

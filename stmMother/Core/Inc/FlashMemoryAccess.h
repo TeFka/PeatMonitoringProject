@@ -15,9 +15,10 @@
 #include <string.h>
 #include "retarget.h"
 
-#define USABLE_FLASH_START 		FLASH_BASE+FLASH_PAGE_SIZE*50
-#define FLASH_PAGE_NUM 			64
+#define USABLE_FLASH_START 	FLASH_BASE+FLASH_PAGE_SIZE*50
+#define FLASH_PAGE_NUM 		64
 
+uint32_t Flash_Erase_Data(uint32_t startAddress, uint16_t pages);
 uint32_t Flash_Write_Data (uint32_t, uint64_t*, int);
 void Flash_Read_Data (uint32_t, uint64_t*, uint16_t);
 

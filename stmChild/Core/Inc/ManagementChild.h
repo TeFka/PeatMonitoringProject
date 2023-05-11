@@ -18,15 +18,16 @@
 #include "RF/comms.h"
 #include "Depth/DepthMeasuring.h"
 #include "FlashMemoryAccess.h"
-#include "SDcard/SDcommunication.h"
 
+//Voltage definitions
 #define Vref 3.3
 #define VOLTAGE_THRESHOLD 2.8
 
+//Button specifications
 #define idSetGPIO 		GPIOB
 #define idSetGPIOPin 	GPIO_PIN_2 //D4
-#define wakeUpGPIO 		GPIOB
-#define wakeUpGPIOPin 	GPIO_PIN_2 //D5
+//#define wakeUpGPIO 		GPIOB
+//#define wakeUpGPIOPin 	GPIO_PIN_2 //D5
 
 //management data
 #define managementDataNum				5
@@ -35,7 +36,7 @@
 #define motherIDaddressAddr				managementDataAddr+8
 #define setupAddr						managementDataAddr+16
 #define discoverAddr					managementDataAddr+24
-#define lowBatteryModeAddr				managementDataAddr+32
+#define hopsAddr						managementDataAddr+32
 
 //depth support variables
 #define numberOfDepthVariables				7
@@ -60,13 +61,12 @@
 #define debugUARTGPIO GPIOB
 #define debugUARTGPIOPin GPIO_PIN_8
 
-#define NUM_READINGS_MAX 1
-#define NEIGHBOUR_LIMIT 20
-
+//Defined value of RTC backup
 #define RTC_BKUP_DEFINE_CODE	0x327
 
 extern uint8_t deviceOperating;
 
+//All peripheral handles
 struct CommunicationHandles{
 
 	I2C_HandleTypeDef*	I2Chandle;
@@ -77,51 +77,40 @@ struct CommunicationHandles{
 	RTC_HandleTypeDef* 	RTChandle;
 };
 
-/*
-struct managementInfo{
-
-	int* rfReceiveFlag;
-	int numberOfMeasurementsStored;
-	int activeMeasurement;
-	struct measurementData measurements[NUM_READINGS_MAX];
-	int neighbourDevices[NEIGHBOUR_LIMIT];
-	int numNeighbourDevices;
-	int lowBatteryMode;
-};
-*/
-
+//Function to perform depth measurement
 void performDepthMeasurement(ADC_HandleTypeDef*, ADC_HandleTypeDef*, struct measurementData* data);
 
+//Function to perform pressure measurement
 void performPressureMeasurement(I2C_HandleTypeDef*, struct measurementData* data);
 
+//Function to perform temperature measurement
 void performTemperatureMeasurement(SPI_HandleTypeDef*, struct measurementData* data);
 
+//Function to check battery state
 void checkBattery(ADC_HandleTypeDef* adcHandle1, struct measurementData* data);
 
+//Function listen to listen for RF requests
 void setRfListening(struct measurementData* data, struct rfDataStorage* rfData, struct CommunicationHandles* handles);
 
+//Function to handle device ID changes
 int IDhandling();
 
+//Fucntion to power down all externally connected devices
 void powerDownDevices();
 
-void customRTCInit();
-
+//Function to perform child device setup and synchronization with mother device
 void synchronizationSetup(struct rfDataStorage* rfData, struct CommunicationHandles* handles);
 
+//Function to setup memory for operation
 void memorySetup();
 
+//Function to setup device for operation
 int mainSetup(struct rfDataStorage* rfData, struct CommunicationHandles*);
 
-void saveMeasurementData(struct measurementData* data, int index);
-void extractMeasurementData(struct measurementData* data, int index);
-
-void encodeMeasurementData(struct measurementData* data, uint8_t dataArray[], uint8_t* dataSize);
-void decodeMeasurementData(struct measurementData* data, uint8_t dataArray[], uint8_t dataSize);
-
-void addDeviceData(struct CommunicationHandles* handles, struct measurementData* data);
-
+//Function to to let device go into shutdown mode
 void setShutdownMode();
 
+//Function to perform main device operation
 void mainOperation(struct rfDataStorage*, struct CommunicationHandles*);
 
 #endif /* INC_MANAGEMENTCHILD_H_ */

@@ -22,7 +22,6 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Src \
-Core/Src/LCD \
 Core/Src/RF \
 Core/Src/SDcard \
 Core/Startup \

@@ -42,9 +42,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h \
  ../Core/Inc/retarget.h ../Core/Inc/ManagementMother.h \
  ../Core/Inc/DataHandling.h ../Core/Inc/RF/comms.h \
- ../Core/Inc/SDcard/SDcommunication.h ../Core/Inc/FlashMemoryAccess.h \
- ../Core/Inc/retarget.h ../Core/Inc/UnitTests.h \
- ../Core/Inc/FlashMemoryAccess.h
+ ../Core/Inc/DataHandling.h ../Core/Inc/SDcard/SDcommunication.h \
+ ../Core/Inc/FlashMemoryAccess.h ../Core/Inc/retarget.h \
+ ../Core/Inc/UnitTests.h ../Core/Inc/FlashMemoryAccess.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -94,6 +94,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/ManagementMother.h:
 ../Core/Inc/DataHandling.h:
 ../Core/Inc/RF/comms.h:
+../Core/Inc/DataHandling.h:
 ../Core/Inc/SDcard/SDcommunication.h:
 ../Core/Inc/FlashMemoryAccess.h:
 ../Core/Inc/retarget.h:

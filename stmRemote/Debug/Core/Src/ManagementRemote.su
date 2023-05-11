@@ -1,6 +1,6 @@
 ../Core/Src/ManagementRemote.c:15:6:addDeviceData	8536	static
 ../Core/Src/ManagementRemote.c:93:6:requestMeasureData	80	dynamic
-../Core/Src/ManagementRemote.c:143:5:requestStatusData	48	static
-../Core/Src/ManagementRemote.c:206:5:mainSetupRemote	24	static
-../Core/Src/ManagementRemote.c:221:5:IDhandling	40	static
-../Core/Src/ManagementRemote.c:248:6:mainOperationRemote	2832	static
+../Core/Src/ManagementRemote.c:146:5:requestStatusData	48	static
+../Core/Src/ManagementRemote.c:212:5:mainSetupRemote	24	static
+../Core/Src/ManagementRemote.c:227:5:IDhandling	40	static
+../Core/Src/ManagementRemote.c:254:6:mainOperationRemote	2832	static

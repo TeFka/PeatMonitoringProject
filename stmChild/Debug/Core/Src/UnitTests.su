@@ -1,7 +1,6 @@
 ../Core/Src/UnitTests.c:10:6:pressureTest	72	static
 ../Core/Src/UnitTests.c:63:6:TemperatureTest	32	static
-../Core/Src/UnitTests.c:80:6:SDcardTest	8304	static
-../Core/Src/UnitTests.c:197:6:depthTest	56	static
-../Core/Src/UnitTests.c:219:6:rfTest	40	static
-../Core/Src/UnitTests.c:230:6:flashTest	88	static
-../Core/Src/UnitTests.c:245:6:batteryTest	56	static
+../Core/Src/UnitTests.c:80:6:depthTest	56	static
+../Core/Src/UnitTests.c:102:6:rfTest	40	static
+../Core/Src/UnitTests.c:113:6:flashTest	88	static
+../Core/Src/UnitTests.c:128:6:batteryTest	56	static

@@ -17,7 +17,6 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/SDcard/subdir.mk
 -include Core/Src/RF/subdir.mk
--include Core/Src/LCD/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
 
