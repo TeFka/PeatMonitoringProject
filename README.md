@@ -5,10 +5,10 @@ Module: Group Project
 Module Code: EEEE4019
 Group number: 10
 Group members:
-Oliver Davies
-Chuan Loo
-Danielius Zurlys
-Sever Dragomir
-James Bodenham
+Oliver Davies - Hardware Lead
+Chuan Loo - Battery Design
+Danielius Zurlys - Software Lead
+Sever Dragomir - Mechanical Lead
+James Bodenham - RF Lead
 
 
