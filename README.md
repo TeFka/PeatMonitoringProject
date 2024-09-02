@@ -9,7 +9,7 @@
 * Operate for at least 6 months unsupervised and store all data.</br>
 ### A poster was created for the device:</br>
 ![The poster of project](Images/projectPoster.jpg)</br>
-The respository was created and managed by Danielius Zurlys. Project work done by Danielius Zurlys:<br>
+### The respository was created and managed by Danielius Zurlys. Project work done by Danielius Zurlys:<br>
 * All embedded software<br>
 * Hardware and mechanical designs for pressure sensor<br>
 * Hardware and mechanical designs for temperature sensor<br>
