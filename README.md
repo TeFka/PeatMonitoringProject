@@ -9,7 +9,7 @@ Measurements include:</br>
 * Operate for at least 6 months unsupervised and store all data.</br>
 </br>
 A poster was created for the device:</br>
-![The poster of project](/Images/projectPoster.jpg)</br>
+![The poster of project](Images/projectPoster.jpg)</br>
 </br>
 The respository was created and managed by Danielius Zurlys. The repository content includes mostly resources developed by Danielius Zurlys. This includes:<br>
 * All embedded software<br>
