@@ -10,10 +10,10 @@ Measurements include:</br>
 </br>
 A poster was created for the device:</br>
 ![The poster of project](Images/projectPoster.jpg)</br>
-</br>
-The respository was created and managed by Danielius Zurlys. The repository content includes mostly resources developed by Danielius Zurlys. This includes:<br>
+The respository was created and managed by Danielius Zurlys. For the project Danielius Zurlys covered:<br>
 * All embedded software<br>
-* Design for pressure sensor<br>
+* Hardware and mechanical designs for pressure sensor<br>
+* Hardware and mechanical designs for temperature sensor<br>
 <br>
 Work done by other group members:<br>
 * Oliver Davies - Developed PCB for STM32<br>
