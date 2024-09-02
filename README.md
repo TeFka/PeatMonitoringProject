@@ -7,7 +7,6 @@ Measurements include:</br>
 * Water pressure - shows the pressure created by the peat water table.</br>
 * Temperature - shows temperature of surroundings around the device.</br>
 * Operate for at least 6 months unsupervised and store all data.</br>
-</br>
 A poster was created for the device:</br>
 ![The poster of project](Images/projectPoster.jpg)</br>
 The respository was created and managed by Danielius Zurlys. For the project Danielius Zurlys covered:<br>
