@@ -13,7 +13,6 @@ The respository was created and managed by Danielius Zurlys. For the project Dan
 * All embedded software<br>
 * Hardware and mechanical designs for pressure sensor<br>
 * Hardware and mechanical designs for temperature sensor<br>
-<br>
 Work done by other group members:<br>
 * Oliver Davies - Developed PCB for STM32<br>
 * Chuan Loo - Developed PCB for battery control<br>
